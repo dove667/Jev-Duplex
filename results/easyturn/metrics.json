@@ -1,0 +1,603 @@
+{
+  "experiment": {
+    "dataset_id": "ASLP-lab/Easy-Turn-Testset",
+    "dataset_revision": "5812651dbab429b9a4fab293de7127bfb9a56650",
+    "asr_model": "Qwen/Qwen3-ASR-1.7B",
+    "asr_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+    "asr_dtype": "bfloat16",
+    "asr_device": "mps",
+    "asr_batch_size": 1,
+    "asr_max_new_tokens": 1024,
+    "asr_language": null,
+    "models": [
+      "typesafe-ai/jev"
+    ],
+    "input_modes": [
+      "asr",
+      "reference"
+    ],
+    "criteria": {
+      "<complete>": "用户已完整表达意图，期待系统回应。",
+      "<incomplete>": "用户表达尚未完成，暂停后还需要继续说。",
+      "<backchannel>": "用户用简短附和表达倾听或理解。",
+      "<wait>": "用户明确要求暂停当前交互或结束对话。"
+    },
+    "instructions": "根据用户当前的文本片段，判断 Easy Turn 定义的话轮状态。请选出最符合当前表达意图的一个候选。完整的提问或请求通常是 complete；句子或意图尚未完成是 incomplete。简短的倾听反馈是 backchannel；明确要求停下或结束交互是 wait。文本来自语音转写，可能存在识别错误或不自然的标点。",
+    "sdk_version": "0.1.0",
+    "qwen_asr_version": "0.0.6",
+    "seed": 42
+  },
+  "sample_count": 800,
+  "asr_quality": {
+    "all": {
+      "n": 800,
+      "cer": 0.014972419227738377,
+      "normalized_exact_match": 0.885,
+      "statuses": {
+        "ok": 799,
+        "empty": 1
+      }
+    },
+    "real": {
+      "n": 400,
+      "cer": 0.02334355104928083,
+      "normalized_exact_match": 0.8225,
+      "statuses": {
+        "ok": 399,
+        "empty": 1
+      }
+    },
+    "synthetic": {
+      "n": 400,
+      "cer": 0.007324429125376993,
+      "normalized_exact_match": 0.9475,
+      "statuses": {
+        "ok": 400
+      }
+    }
+  },
+  "confusion_matrices": [
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "gold_labels": [
+        "<complete>",
+        "<incomplete>",
+        "<backchannel>",
+        "<wait>"
+      ],
+      "predicted_labels": [
+        "<complete>",
+        "<incomplete>",
+        "<backchannel>",
+        "<wait>",
+        "missing"
+      ],
+      "counts": [
+        [
+          274,
+          19,
+          6,
+          1,
+          0
+        ],
+        [
+          46,
+          250,
+          4,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          97,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          0,
+          97,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "gold_labels": [
+        "<complete>",
+        "<incomplete>",
+        "<backchannel>",
+        "<wait>"
+      ],
+      "predicted_labels": [
+        "<complete>",
+        "<incomplete>",
+        "<backchannel>",
+        "<wait>",
+        "missing"
+      ],
+      "counts": [
+        [
+          275,
+          21,
+          3,
+          1,
+          0
+        ],
+        [
+          15,
+          285,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          98,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          97,
+          0
+        ]
+      ]
+    }
+  ],
+  "overall": [
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "n": 800,
+      "accuracy": 0.8975,
+      "macro_accuracy": 0.921666666666667,
+      "valid_n": 799,
+      "coverage": 0.99875,
+      "nll": 0.26933689993492,
+      "brier": 0.143825281602002,
+      "timed_n": 0,
+      "median_inference_ms": null,
+      "p95_inference_ms": null,
+      "ece": 0.028911138923655
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "n": 800,
+      "accuracy": 0.94375,
+      "macro_accuracy": 0.954166666666667,
+      "valid_n": 800,
+      "coverage": 1.0,
+      "nll": 0.146422016033811,
+      "brier": 0.08548475,
+      "timed_n": 0,
+      "median_inference_ms": null,
+      "p95_inference_ms": null,
+      "ece": 0.0109125
+    }
+  ],
+  "per_class": [
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "gold": "<backchannel>",
+      "n": 100,
+      "correct": 97,
+      "accuracy": 0.97
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "gold": "<complete>",
+      "n": 300,
+      "correct": 274,
+      "accuracy": 0.913333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "gold": "<incomplete>",
+      "n": 300,
+      "correct": 250,
+      "accuracy": 0.833333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "gold": "<wait>",
+      "n": 100,
+      "correct": 97,
+      "accuracy": 0.97
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "gold": "<backchannel>",
+      "n": 100,
+      "correct": 98,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "gold": "<complete>",
+      "n": 300,
+      "correct": 275,
+      "accuracy": 0.916666666666667
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "gold": "<incomplete>",
+      "n": 300,
+      "correct": 285,
+      "accuracy": 0.95
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "gold": "<wait>",
+      "n": 100,
+      "correct": 97,
+      "accuracy": 0.97
+    }
+  ],
+  "per_source": [
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "real",
+      "n": 400,
+      "accuracy": 0.89,
+      "macro_accuracy": 0.913333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "synthetic",
+      "n": 400,
+      "accuracy": 0.905,
+      "macro_accuracy": 0.93
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "real",
+      "n": 400,
+      "accuracy": 0.925,
+      "macro_accuracy": 0.94
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "synthetic",
+      "n": 400,
+      "accuracy": 0.9625,
+      "macro_accuracy": 0.968333333333333
+    }
+  ],
+  "per_source_class": [
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "real",
+      "gold": "<backchannel>",
+      "n": 50,
+      "correct": 48,
+      "accuracy": 0.96
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "real",
+      "gold": "<complete>",
+      "n": 150,
+      "correct": 125,
+      "accuracy": 0.833333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "real",
+      "gold": "<incomplete>",
+      "n": 150,
+      "correct": 135,
+      "accuracy": 0.9
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "real",
+      "gold": "<wait>",
+      "n": 50,
+      "correct": 48,
+      "accuracy": 0.96
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "synthetic",
+      "gold": "<backchannel>",
+      "n": 50,
+      "correct": 49,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "synthetic",
+      "gold": "<complete>",
+      "n": 150,
+      "correct": 149,
+      "accuracy": 0.993333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "synthetic",
+      "gold": "<incomplete>",
+      "n": 150,
+      "correct": 115,
+      "accuracy": 0.766666666666667
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr",
+      "source": "synthetic",
+      "gold": "<wait>",
+      "n": 50,
+      "correct": 49,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "real",
+      "gold": "<backchannel>",
+      "n": 50,
+      "correct": 49,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "real",
+      "gold": "<complete>",
+      "n": 150,
+      "correct": 126,
+      "accuracy": 0.84
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "real",
+      "gold": "<incomplete>",
+      "n": 150,
+      "correct": 147,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "real",
+      "gold": "<wait>",
+      "n": 50,
+      "correct": 48,
+      "accuracy": 0.96
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "synthetic",
+      "gold": "<backchannel>",
+      "n": 50,
+      "correct": 49,
+      "accuracy": 0.98
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "synthetic",
+      "gold": "<complete>",
+      "n": 150,
+      "correct": 149,
+      "accuracy": 0.993333333333333
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "synthetic",
+      "gold": "<incomplete>",
+      "n": 150,
+      "correct": 138,
+      "accuracy": 0.92
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference",
+      "source": "synthetic",
+      "gold": "<wait>",
+      "n": 50,
+      "correct": 49,
+      "accuracy": 0.98
+    }
+  ],
+  "reliability": [
+    {
+      "bin": "(0.4, 0.5]",
+      "n": 4,
+      "confidence": 0.4675,
+      "accuracy": 0.5,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.5, 0.6]",
+      "n": 41,
+      "confidence": 0.558780487804878,
+      "accuracy": 0.51219512195122,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.6, 0.7]",
+      "n": 42,
+      "confidence": 0.654285714285714,
+      "accuracy": 0.571428571428571,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.7, 0.8]",
+      "n": 47,
+      "confidence": 0.755957446808511,
+      "accuracy": 0.702127659574468,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.8, 0.9]",
+      "n": 84,
+      "confidence": 0.859047619047619,
+      "accuracy": 0.904761904761905,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.9, 1.0]",
+      "n": 581,
+      "confidence": 0.986592082616179,
+      "accuracy": 0.967297762478485,
+      "model": "typesafe-ai/jev",
+      "input_mode": "asr"
+    },
+    {
+      "bin": "(0.4, 0.5]",
+      "n": 7,
+      "confidence": 0.472857142857143,
+      "accuracy": 0.428571428571429,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    },
+    {
+      "bin": "(0.5, 0.6]",
+      "n": 25,
+      "confidence": 0.5508,
+      "accuracy": 0.6,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    },
+    {
+      "bin": "(0.6, 0.7]",
+      "n": 25,
+      "confidence": 0.6596,
+      "accuracy": 0.8,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    },
+    {
+      "bin": "(0.7, 0.8]",
+      "n": 47,
+      "confidence": 0.758510638297872,
+      "accuracy": 0.765957446808511,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    },
+    {
+      "bin": "(0.8, 0.9]",
+      "n": 70,
+      "confidence": 0.855714285714286,
+      "accuracy": 0.842857142857143,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    },
+    {
+      "bin": "(0.9, 1.0]",
+      "n": 626,
+      "confidence": 0.989728434504792,
+      "accuracy": 0.993610223642172,
+      "model": "typesafe-ai/jev",
+      "input_mode": "reference"
+    }
+  ],
+  "paired_input_changes": [
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "character_changed",
+      "reference_correct": false,
+      "asr_correct": false,
+      "n": 10
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "character_changed",
+      "reference_correct": false,
+      "asr_correct": true,
+      "n": 1
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "character_changed",
+      "reference_correct": true,
+      "asr_correct": false,
+      "n": 7
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "character_changed",
+      "reference_correct": true,
+      "asr_correct": true,
+      "n": 73
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "normalized_identical",
+      "reference_correct": false,
+      "asr_correct": false,
+      "n": 30
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "normalized_identical",
+      "reference_correct": false,
+      "asr_correct": true,
+      "n": 3
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "normalized_identical",
+      "reference_correct": true,
+      "asr_correct": false,
+      "n": 33
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "normalized_identical",
+      "reference_correct": true,
+      "asr_correct": true,
+      "n": 555
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "raw_identical",
+      "reference_correct": false,
+      "asr_correct": false,
+      "n": 1
+    },
+    {
+      "model": "typesafe-ai/jev",
+      "text_change": "raw_identical",
+      "reference_correct": true,
+      "asr_correct": true,
+      "n": 86
+    }
+  ]
+}

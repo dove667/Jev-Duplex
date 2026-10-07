@@ -1,0 +1,7 @@
+# 完整 EasyTurn 实验；包含基础 notebook 依赖。
+-r requirements.txt
+torch==2.9.1
+qwen-asr==0.0.6
+transformers==4.57.6
+huggingface-hub==0.36.2
+scikit-learn==1.9.1

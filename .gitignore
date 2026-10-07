@@ -1,0 +1,16 @@
+# 本地实验与下载缓存
+/results/easyturn/cache*/
+/data/
+/models/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 凭证与本地配置
+.env
+.env.*
+!.env.example
+*.key
+.DS_Store

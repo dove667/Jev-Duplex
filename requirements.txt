@@ -1,0 +1,7 @@
+# 决策模型教程与 notebook 阅读环境。
+simplex-ai-sdk @ git+https://github.com/SPX-AI968/spx-sdk.git@19c5bdebcd6a12424128011b6dacb1ec621574a7
+numpy==2.4.6
+pandas==2.3.3
+matplotlib==3.10.8
+jupyterlab==4.5.0
+ipykernel==7.1.0
